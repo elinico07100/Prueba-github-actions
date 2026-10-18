@@ -1,0 +1,25 @@
+name: Ejecutar Script de Python
+
+# Define cuándo se va a ejecutar esta acción
+on:
+  push:
+    branches: [ main, master ] # Se ejecuta cada vez que haces un push a main o master
+
+jobs:
+  run-python-script:
+    runs-on: ubuntu-latest # Utiliza una máquina virtual gratuita con Linux
+
+    steps:
+      # Paso 1: Descarga tu código en la máquina virtual
+      - name: Copiar código del repositorio
+        uses: actions/checkout@v4
+
+      # Paso 2: Configura la versión de Python que necesitas
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      # Paso 3: Ejecuta tu script de Python
+      - name: Ejecutar el script
+        run: python main.py
